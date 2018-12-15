@@ -24,4 +24,3 @@ private
                                  :password_confirmation, :image, :image_cache)
   end
 end
-end
