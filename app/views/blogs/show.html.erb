@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <h1>ブログ投稿確認</h1>
+  
+  
+    
+  <div class="row">
+    <div class="nav nav-sidebar col-md-3 col-xs-12">
+      <ul id="list"></ul>
+            <li class="active"><a href=""/"">ホーム</a></li>
+            <li><a href="/blogs/new">新規作成</a></li>
+            <li><a href="/blogs">投稿一覧</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-9 col-xs-12">  
+        <p>画像：</p>
+        <%= image_tag @blog.image.url %></p>
+      <div class= "margin">
+        <p>内容: <%= @blog.content %></p>
+      </div>
+
+      <div class= "margin col-md-9 col-xs-12">
+        <a href="/blogs" class="btn btn-default btn-sm" role="button">投稿一覧へ</a>
+      </div>
+    </div>
+  </div>
+  <% unless @blog.user_id == current_user.id %>
+    <div class= "margin col-md-9 col-xs-12">  
+      <% if @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'お気に入りする', favorites_path(blog_id: @blog.id), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

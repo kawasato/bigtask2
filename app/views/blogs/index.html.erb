@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <h1>ブログ一覧</h1>
+  <%= image_tag "umi.jpg" ,class: "image" %>
+  <div class="row">
+    <div class="nav nav-sidebar col-md-3 col-xs-12">
+      <ul id="list"></ul>
+            <li class="topic"><a href="/">ホーム</a></li>
+            <li><a href="/blogs/new">新規作成</a></li>
+            <li><a href="/blogs">ブログ一覧</a></li>
+        </ul>
+    </div>
+    <div class="col-md-9 col-xs-12">
+　　    <p><%= notice %></p>
+        <table>
+          <tr>
+            <th>画像</th>
+            <th>記事</th>
+            <th>投稿者</th>
+            <th></th>
+          </tr>
+
+          <% @blogs.each do |blog| %>
+          <tr>
+            <td><%= image_tag(@blog.image.url) %><%= form.hidden_field :image_cache %></td>
+            <td><%= blog.content %></td>
+            <td><%= blog.user.name %></td>
+            <td><%= link_to '確認', blog_path(blog.id) %> 
+            <% if logged_in? %>
+              <% if blog.user_id == current_user.id %>
+                <%= link_to "編集", edit_blog_path(blog.id) %> 
+                <%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+              <% end %> 
+            <% end %>
+          </tr>
+          <% end %>
+        </table><br><br>
+    </div>
+  </div>
+  
+</div>
+<div class= "margin">
+  <a href="/" class="btn btn-default btn-sm" role="button">トップページへ</a>
+</div>
