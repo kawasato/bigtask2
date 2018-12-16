@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :require_logged_in!, only: [:new, :show, :edit, :update]
+    before_action :require_logged_in!, only: [:show, :edit, :update]
     
     def new
         @user = User.new
@@ -25,7 +25,7 @@ end
 
 def update
   if @user.update(user_params)
-    redirect_to users_path, notice: "ユーザーを編集しました！"
+    redirect_to user_path, notice: "ユーザーを編集しました！"
   else
     render 'edit'
   end
