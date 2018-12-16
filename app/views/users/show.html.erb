@@ -6,6 +6,13 @@
 
   <a href="/favorite" class="btn btn-default btn-sm" role="button">お気に入りした投稿一覧へ</a>
 
+  <% if logged_in? %>
+  <% if @user.id == current_user.id %>
+    <%= link_to "編集", edit_user_path(@user.id) %> 
+  <% end %> 
+<% end %>
+
+
 <div class= "margin">
   <a href="/" class="btn btn-default btn-sm" role="button">トップページへ</a>
 </div>

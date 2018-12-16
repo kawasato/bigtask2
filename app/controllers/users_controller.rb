@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :require_logged_in!, only: [:new, :show, :edit, :update]
+    
     def new
         @user = User.new
     end
@@ -17,10 +20,35 @@ def show
     @favorites_blogs = @user.favorites
 end
 
+def edit
+end
+
+def update
+  if @user.update(user_params)
+    redirect_to users_path, notice: "ユーザーを編集しました！"
+  else
+    render 'edit'
+  end
+end
+
+
+
+def favorite
+  @user = User.find(params[:id])
+  @favorites_blogs = @user.favorites
+end
+
+
 private
   
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :image, :image_cache)
   end
+  def set_user
+    @user = User.find(params[:id])
+  end
 end
+
+ 
+
