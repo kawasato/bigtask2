@@ -15,5 +15,4 @@ class FavoritesController < ApplicationController
     def fevorites_params
       params.require(:fevorite).permit(:image, :image_cache)
     end
-
-end
+  end
