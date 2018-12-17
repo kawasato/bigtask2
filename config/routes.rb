@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   resources :blogs do
     collection do
         post :confirm
-      end
     end
+  end
 
     resources :users do
       collection do
           post :confirm
+        end
+      member do
+          get 'favorite'
         end
       end
 

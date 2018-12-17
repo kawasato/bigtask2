@@ -4,8 +4,7 @@
 <% end %>
 <p>メールアドレス: <%= @user.email %></p>
 
-  <a href="/favorite" class="btn btn-default btn-sm" role="button">お気に入りした投稿一覧へ</a>
-
+  <%= link_to "お気に入りした投稿一覧へ", favorite_user_path(@user.id) %>
   <% if logged_in? %>
   <% if @user.id == current_user.id %>
     <%= link_to "編集", edit_user_path(@user.id) %> 
