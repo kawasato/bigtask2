@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :edit_user, only: [:edit, :favorite]
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :edit_user, only: [:edit]
+    before_action :set_user, only: [:show, :edit, :update, :favorite]
     before_action :require_logged_in!, only: [:show, :edit, :update, :favorite]
     
     def new
