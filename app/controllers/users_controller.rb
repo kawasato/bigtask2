@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+    before_action :edit_user, only: [:edit, :favorite]
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :require_logged_in!, only: [:show, :edit, :update]
+    before_action :require_logged_in!, only: [:show, :edit, :update, :favorite]
     
     def new
         @user = User.new
@@ -17,7 +18,7 @@ end
 
 def show
     @user = User.find(params[:id])
-    @favorites_blogs = @user.favorites
+    
 end
 
 def edit
@@ -36,6 +37,12 @@ end
 def favorite
   @user = User.find(params[:id])
   @favorites_blogs = @user.favorites
+end
+
+def edit_user
+  unless @user.id == current_user.id  
+    redirect_to user_path, notice: "投稿者以外は編集できません！！"
+  end
 end
 
 
