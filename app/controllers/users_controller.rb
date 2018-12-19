@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :favorite]
-  before_action :edit_user, only: [ :edit]
+  before_action :edit_user, only: [:show,:edit]
   before_action :require_logged_in!, only: [:show, :edit, :update, :favorite]
     
     def new
@@ -53,7 +53,7 @@ private
   end
   def edit_user
     unless @user.id == current_user.id  
-      redirect_to user_path, notice: "投稿者以外は編集できません！！"
+      redirect_to root_path, notice: "ユーザー本人以外は閲覧・編集できません！！"
   end
 end
 
