@@ -3,7 +3,6 @@ class BlogsController < ApplicationController
     before_action :require_logged_in!, only: [:new, :show, :edit, :update, :destroy]
     before_action :edit_blog, only: [:edit, :destroy]
   
-  
   def index
     @blogs = Blog.all
   end
